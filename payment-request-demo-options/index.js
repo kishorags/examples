@@ -17,6 +17,10 @@ var details = {
     {
       label: 'Test tax',
       amount: {currency: 'GBP', value: '0.17'}
+    },
+    {
+      label: 'Shipping',
+      amount: {currency: 'GBP', value: '0.00'}
     }
   ],
   // If you include requestShipping then you need at least one shipping option
@@ -27,6 +31,12 @@ var details = {
       id: 'free',
       label: 'Free shipping',
       amount: {currency: 'GBP', value: '0.00'},
+      selected: true,
+    } , 
+    {
+      id: 'express',
+      label: 'Express shipping',
+      amount: {currency: 'GBP', value: '0.50'},
       selected: true,
     }
   ]
@@ -91,6 +101,12 @@ function onDonateButtonClick() {
     // e.g. delivery costs, due to the shipping address changing here.
     console.log('Shipping address changed', evt);
   });
+  paymentRequest.addEventListener('shippingoptionschange', function(evt) {
+    // Omitting for this demo, but we could process any changes to 
+    // e.g. delivery costs, due to the shipping address changing here.
+    console.log('Shipping options changed', evt);
+  });  
+  
 
   // Show the native UI
   paymentRequest.show()
